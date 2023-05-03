@@ -1,12 +1,25 @@
-name: Build
+name: Build Project 6
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Build program
-        run: make
+      - uses: actions/checkout@v2
+
+      - name: Build Project 6
+        run: make -C project6
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: project6-build
+          path: project6/bin/
