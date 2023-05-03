@@ -1,29 +1,21 @@
-name: Build Project 6
+name: C-build
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
-
+    branches: [main]
+    
 jobs:
   build:
+  
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Build project
-        run: |
-          cd project6
-          make
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: project6-artifact
-          path: project6/bin/
-
+    - uses: actions/checkout@v2
+    - name: make
+      run: make
+    - name: make check
+      run: make check
+    - name: make distcheck
+      run: make distcheck
