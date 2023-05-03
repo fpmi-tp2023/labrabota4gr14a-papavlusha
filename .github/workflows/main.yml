@@ -13,13 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Build Project 6
-        run: make -C project6
+      - name: Build project
+        run: |
+          cd project6
+          make
 
-      - name: Upload Artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: project6-build
+          name: project6-artifact
           path: project6/bin/
+
